@@ -46,7 +46,7 @@
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <a href="{{ route('supplier.destroy', $supplier->id) }}"
-                                                    class="btn btn-sm btn-danger">
+                                                    class="btn btn-sm btn-danger" data-confirm-delete="true">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>

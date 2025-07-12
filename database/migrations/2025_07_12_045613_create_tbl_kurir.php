@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string('no_telp', 15);
             $table->string('jenis_kendaraan', 50);
             $table->string('plat_nomor', 20);
-            $table->enum('status', ['Aktif', 'Tidak Aktif'])->default('
-Aktif');
+            $table->enum('status', ['Aktif', 'Tidak Aktif']);
+            $table->unsignedBigInteger('cabang_id');
+            $table->foreign('cabang_id')->references('id')->on('tbl_cabang')->onDelete('cascade')->onUpdate('cascade');
             $table->string('photo', 100);
-            $table->foreignId('cabang_id')->constrained('tbl_cabang')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

@@ -13,9 +13,11 @@ class SupplierController extends Controller
     public function index()
     {
         $suppliers = Supplier::all();
+
         $title = 'Delete Supplier!';
-        $text = 'Are you sure you want to delete?';
-        return view('supplier.index', compact('suppliers', 'title', 'text'));
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
+        return view('supplier.index', compact('suppliers'));
     }
 
     public function create()

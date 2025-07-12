@@ -5,6 +5,7 @@ use App\Http\Controllers\CabangController;
 
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KurirController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SupplierController;
@@ -32,6 +33,14 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::middleware('auth')->group(function () {
+    Route::controller(KurirController::class)->prefix('kurir')->name('kurir.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('{kurir}/edit', 'edit')->name('edit');
+        Route::put('{kurir}', 'update')->name('update');
+        Route::delete('{kurir}', 'destroy')->name('destroy');
+    });
     Route::view('about', 'about')->name('about');
 
     Route::controller(BarangController::class)->prefix('barang')->name('barang.')->group(function () {

@@ -52,10 +52,10 @@
                                                     style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-danger"
-                                                        onclick="return confirm('Yakin ingin menghapus cabang ini?')">
+                                                    <a href="{{ route('cabang.destroy', $cabang->id) }}"
+                                                        class="btn btn-sm btn-danger" data-confirm-delete="true">
                                                         <i class="fas fa-trash"></i>
-                                                    </button>
+                                                    </a>
                                                 </form>
                                             </td>
                                         </tr>

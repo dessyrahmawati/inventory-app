@@ -69,6 +69,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ route('kurir.index') }}"
+                                class="nav-link {{ request()->routeIs('kurir.*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-motorcycle"></i>
+                                <p>
+                                    {{ __('Kurir') }}
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('about') }}"
                                 class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}">
                                 <i class="nav-icon far fa-address-card"></i>

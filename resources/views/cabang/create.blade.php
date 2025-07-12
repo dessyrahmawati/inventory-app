@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="no_telp" class="form-label">No. Telp</label>
-                                    <input type="text" name="no_telp" id="no_telp" class="form-control form-control-lg"
+                                    <input type="number" name="no_telp" id="no_telp" class="form-control form-control-lg"
                                         value="{{ old('no_telp') }}" required>
                                 </div>
                                 <div class="form-group text-end">
