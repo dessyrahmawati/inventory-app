@@ -5,14 +5,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">{{ __('Users') }}</h1>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
+                    <h1 class="m-0">{{ __('Roles') }}</h1>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- /.content-header -->
-
-    <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
             <div class="row">
@@ -20,8 +18,8 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex justify-content-between align-items-center">
-                                <h3>Tabel User</h3>
-                                <a href="{{ route('users.create') }}" class="btn bg-maroon">Tambah Data</a>
+                                <h3>Tabel Role</h3>
+                                <a href="{{ route('roles.create') }}" class="btn bg-maroon">Tambah Data</a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -30,26 +28,24 @@
                                     <tr>
                                         <th width="10px">#</th>
                                         <th>Name</th>
-                                        <th>Email</th>
                                         <th width="150px">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($users as $user)
+                                    @foreach ($roles as $role)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $user->name }}</td>
-                                            <td>{{ $user->email }}</td>
+                                            <td>{{ $role->name }}</td>
                                             <td>
-                                                <a href="{{ route('users.edit', $user->id) }}"
+                                                <a href="{{ route('roles.edit', $role->id) }}"
                                                     class="btn btn-primary btn-sm">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <form action="{{ route('users.destroy', $user->id) }}" method="POST"
+                                                <form action="{{ route('roles.destroy', $role->id) }}" method="POST"
                                                     style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <a href="{{ route('users.destroy', $user->id) }}"
+                                                    <a href="{{ route('roles.destroy', $role->id) }}"
                                                         class="btn btn-sm btn-danger" data-confirm-delete="true">
                                                         <i class="fas fa-trash"></i>
                                                     </a>
@@ -60,25 +56,18 @@
                                 </tbody>
                             </table>
                         </div>
-                        <!-- /.card-body -->
                     </div>
-
                 </div>
             </div>
-            <!-- /.row -->
-        </div><!-- /.container-fluid -->
+        </div>
     </div>
-    <!-- /.content -->
+@endsection
 @section('scripts')
     <script>
         $('#table').DataTable({
             responsive: true,
             autoWidth: true,
             processing: true,
-            rowReorder: {
-                selector: 'td:nth-child(2)'
-            },
         });
     </script>
-@endsection
 @endsection

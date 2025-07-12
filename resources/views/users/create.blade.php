@@ -44,6 +44,19 @@
                                     <input type="password" name="password_confirmation" id="password_confirmation"
                                         class="form-control form-control-lg" required>
                                 </div>
+                                @php
+                                    use Spatie\Permission\Models\Role;
+                                    $roles = Role::all();
+                                @endphp
+                                <div class="form-group mb-3">
+                                    <label for="role" class="form-label">Role</label>
+                                    <select name="role" id="role" class="form-control form-control-lg" required>
+                                        <option value="">Pilih Role</option>
+                                        @foreach ($roles as $role)
+                                            <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                                 <div class="form-group text-end">
                                     <button type="submit" class="btn bg-maroon">Submit</button>
                                     <a href="{{ route('users.index') }}" class="btn btn-secondary ms-2">Kembali</a>

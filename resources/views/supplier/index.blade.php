@@ -5,14 +5,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">{{ __('Users') }}</h1>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
+                    <h1 class="m-0">{{ __('Suppliers') }}</h1>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- /.content-header -->
-
-    <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
             <div class="row">
@@ -20,8 +18,8 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex justify-content-between align-items-center">
-                                <h3>Tabel User</h3>
-                                <a href="{{ route('users.create') }}" class="btn bg-maroon">Tambah Data</a>
+                                <h3>Tabel Supplier</h3>
+                                <a href="{{ route('supplier.create') }}" class="btn bg-maroon">Tambah Data</a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -29,56 +27,66 @@
                                 <thead>
                                     <tr>
                                         <th width="10px">#</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
+                                        <th>Nama Supplier</th>
+                                        <th>Alamat</th>
+                                        <th>No Telp</th>
                                         <th width="150px">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($users as $user)
+                                    @foreach ($suppliers as $supplier)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $user->name }}</td>
-                                            <td>{{ $user->email }}</td>
+                                            <td>{{ $supplier->nama_supplier }}</td>
+                                            <td>{{ $supplier->alamat_supplier }}</td>
+                                            <td>{{ $supplier->no_telp }}</td>
                                             <td>
-                                                <a href="{{ route('users.edit', $user->id) }}"
+                                                <a href="{{ route('supplier.edit', $supplier->id) }}"
                                                     class="btn btn-primary btn-sm">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <form action="{{ route('users.destroy', $user->id) }}" method="POST"
-                                                    style="display:inline;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <a href="{{ route('users.destroy', $user->id) }}"
-                                                        class="btn btn-sm btn-danger" data-confirm-delete="true">
-                                                        <i class="fas fa-trash"></i>
-                                                    </a>
-                                                </form>
+                                                <a href="{{ route('supplier.destroy', $supplier->id) }}"
+                                                    class="btn btn-sm btn-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
-                        <!-- /.card-body -->
                     </div>
-
                 </div>
             </div>
-            <!-- /.row -->
-        </div><!-- /.container-fluid -->
+        </div>
     </div>
-    <!-- /.content -->
+@endsection
 @section('scripts')
     <script>
         $('#table').DataTable({
             responsive: true,
             autoWidth: true,
             processing: true,
-            rowReorder: {
-                selector: 'td:nth-child(2)'
-            },
         });
+
+        function confirmDelete(title, text, url) {
+            if (confirm(text)) {
+                var form = document.createElement('form');
+                form.method = 'POST';
+                form.action = url;
+                var csrf = document.createElement('input');
+                csrf.type = 'hidden';
+                csrf.name = '_token';
+                csrf.value = '{{ csrf_token() }}';
+                form.appendChild(csrf);
+                var method = document.createElement('input');
+                method.type = 'hidden';
+                method.name = '_method';
+                method.value = 'DELETE';
+                form.appendChild(method);
+                document.body.appendChild(form);
+                form.submit();
+            }
+        }
     </script>
-@endsection
 @endsection
