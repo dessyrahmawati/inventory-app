@@ -13,6 +13,10 @@ class CabangController extends Controller
      */
     public function index()
     {
+
+        $title = 'Delete Cabang!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
         $cabangs = Cabang::all();
         return view('cabang.index', compact('cabangs'));
     }

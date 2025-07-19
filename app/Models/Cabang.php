@@ -16,4 +16,8 @@ class Cabang extends Model
         'alamat_cabang',
         'no_telp',
     ];
+    public function stok_keluar()
+    {
+        return $this->hasMany(\App\Models\StokKeluar::class, 'cabang_id');
+    }
 }

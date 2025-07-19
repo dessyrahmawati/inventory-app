@@ -19,4 +19,12 @@ class Barang extends Model
         'harga',
         'keterangan',
     ];
+    public function stok_masuk()
+    {
+        return $this->hasMany(\App\Models\StokMasuk::class, 'barang_id');
+    }
+    public function stok_keluar_details()
+    {
+        return $this->hasMany(\App\Models\StokKeluarDetail::class, 'barang_id');
+    }
 }

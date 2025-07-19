@@ -26,4 +26,8 @@ class Kurir extends Model
     {
         return $this->belongsTo(Cabang::class);
     }
+    public function stok_keluar()
+    {
+        return $this->hasMany(\App\Models\StokKeluar::class, 'kurir_id');
+    }
 }

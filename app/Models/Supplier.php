@@ -16,4 +16,8 @@ class Supplier extends Model
         'alamat_supplier',
         'no_telp',
     ];
+    public function stok_masuk()
+    {
+        return $this->hasMany(\App\Models\StokMasuk::class, 'supplier_id');
+    }
 }
